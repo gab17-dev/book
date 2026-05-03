@@ -1,0 +1,126 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4ecd8 url("https://www.transparenttextures.com/patterns/aged-paper.png");
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* CONTAINER */
+.book-container {
+  text-align: center;
+}
+
+/* BOOK */
+.book {
+  position: relative;
+  width: 800px;
+  height: 500px;
+  transform-style: preserve-3d;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+/* PAPER */
+.paper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  perspective: 2000px;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+/* PAGE SIDES */
+.front, .back {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  background: #fffaf0;
+  padding: 40px;
+  box-sizing: border-box;
+  backface-visibility: hidden;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.05);
+}
+
+/* LEFT PAGE */
+.front {
+  left: 0;
+  transform-origin: right;
+  border-right: 1px solid #ddd;
+}
+
+/* RIGHT PAGE */
+.back {
+  right: 0;
+  transform: rotateY(180deg);
+  transform-origin: left;
+  border-left: 1px solid #ddd;
+}
+
+/* FLIP */
+.paper.flipped {
+  transform: rotateY(-180deg);
+}
+
+/* COVER */
+.cover {
+  background: #e8d8c3;
+}
+
+/* TYPOGRAPHY */
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+  color: #5a2a27;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* IMAGE */
+img {
+  width: 100%;
+  border: 10px solid white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transform: rotate(-2deg);
+}
+
+/* CONTROLS */
+.controls {
+  margin-top: 20px;
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 18px;
+  background: #5a2a27;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #7a3a35;
+}
+
+/* STACKING */
+.paper:nth-child(1) { z-index: 3; }
+.paper:nth-child(2) { z-index: 2; }
+.paper:nth-child(3) { z-index: 1; }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .book {
+    width: 90vw;
+    height: 400px;
+  }
+
+  .front, .back {
+    width: 100%;
+    transform: none !important;
+  }
+}
