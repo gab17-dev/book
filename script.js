@@ -2,7 +2,7 @@ const papers = document.querySelectorAll(".paper");
 let current = 0;
 const total = papers.length;
 
-// set initial stack
+// initial stack order
 papers.forEach((paper, i) => {
   paper.style.zIndex = total - i;
 });
@@ -13,9 +13,13 @@ document.getElementById("next").onclick = () => {
 
     p.classList.add("flipped");
 
-    setTimeout(() => {
+    // wait for animation to finish EXACTLY
+    const onEnd = () => {
       p.style.zIndex = 0;
-    }, 1000);
+      p.removeEventListener("transitionend", onEnd);
+    };
+
+    p.addEventListener("transitionend", onEnd);
 
     current++;
   }
@@ -27,7 +31,7 @@ document.getElementById("prev").onclick = () => {
 
     const p = papers[current];
 
-    p.classList.remove("flipped");
     p.style.zIndex = total - current;
+    p.classList.remove("flipped");
   }
 };
