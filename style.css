@@ -29,7 +29,7 @@ body {
   height: 100%;
   perspective: 2000px;
   transform-style: preserve-3d;
-  transition: transform 1s;
+  transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 /* PAGE SIDES */
