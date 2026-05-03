@@ -8,18 +8,6 @@ papers.forEach((paper, i) => {
 });
 
 document.getElementById("next").onclick = () => {
-  if (current < total) {
-    const p = papers[current];
-
-    p.classList.add("flipped");
-
-    // wait for animation to finish EXACTLY
-    const onEnd = () => {
-      p.style.zIndex = 0;
-      p.removeEventListener("transitionend", onEnd);
-    };
-
-    document.getElementById("next").onclick = () => {
   console.log("CLICK NEXT");
 
   if (current < total) {
@@ -28,13 +16,12 @@ document.getElementById("next").onclick = () => {
 
     p.classList.add("flipped");
 
-    p.addEventListener("transitionend", () => {
+    // wait for animation to finish EXACTLY
+    const onEnd = () => {
       console.log("Flip finished:", current);
-    });
-
-    current++;
-  }
-};
+      p.style.zIndex = 0;
+      p.removeEventListener("transitionend", onEnd);
+    };
 
     p.addEventListener("transitionend", onEnd);
 
