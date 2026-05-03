@@ -19,6 +19,23 @@ document.getElementById("next").onclick = () => {
       p.removeEventListener("transitionend", onEnd);
     };
 
+    document.getElementById("next").onclick = () => {
+  console.log("CLICK NEXT");
+
+  if (current < total) {
+    const p = papers[current];
+    console.log("Flipping paper index:", current);
+
+    p.classList.add("flipped");
+
+    p.addEventListener("transitionend", () => {
+      console.log("Flip finished:", current);
+    });
+
+    current++;
+  }
+};
+
     p.addEventListener("transitionend", onEnd);
 
     current++;
